@@ -1,0 +1,112 @@
+{% extends 'extend.html' %}
+{% block content %}
+<body>
+    <div class="container mt-5" style="margin-bottom : 5%">
+        <div class="content">
+            <div class="accordion" id="accordionPanelsStayOpenExample">
+                {% if userInfo %}
+                {% for info in userInfo %}
+                <div class="accordion-item" id="{{ info.0 }}">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse{{ info.0 }}" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                            &nbsp;-&nbsp;Notification {{ info.0 }}
+                            <span class="time-ago" style="margin-left: 70%">{{ info.2 }} ago</span>
+
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapse{{ info.0 }}" class="accordion-collapse collapse show">
+                        <div class="accordion-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <strong>{{ info.1 }}</strong>
+                                <button class="btn btn-link text-danger delete-accordion" aria-label="Delete" onclick="delete_msg('{{ info.0 }}')">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% else %}
+                <div class="d-flex justify-content-center">No notifications to show.</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    
+   
+    
+
+</body>
+<script>
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    const csrftoken = getCookie('csrftoken');
+      function menuToggle() {
+        const toggleMenu = document.querySelector(".menu");
+        toggleMenu.classList.toggle("active");
+      }
+      
+    function delete_msg(a){
+        $.ajax({
+            "type": "POST",
+            "url": `/delete_msg`,
+            "dataType": "JSON",
+            "data":{"id":a},
+            "headers": { 'X-CSRFToken': csrftoken },
+            "mode": 'same-origin'
+        }).then(function (response) {
+            console.log(response.data)
+          
+            document.getElementById(a).style.display='none';
+        });
+    }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var timeElements = document.querySelectorAll('.time-ago');
+        timeElements.forEach(function(element) {
+            var datetime = element.innerText;
+            
+            // Preprocess the datetime string into a format Moment.js can parse
+            var formattedDatetime = preprocessDatetime(datetime);
+            
+            // Parse the formatted datetime string using Moment.js
+            var momentTime = moment(formattedDatetime, "YYYY-MM-DDTHH:mm:ssZ");
+            
+            if (momentTime.isValid()) {
+                var timeAgo = momentTime.fromNow(); // Get "time ago" string
+                element.innerText = timeAgo;
+            } else {
+                console.error("Invalid datetime format:", datetime);
+            }
+        });
+    });
+
+    function preprocessDatetime(datetimeString) {
+        // Example preprocessing function, adjust as needed
+        // This is a simplistic approach, you may need a more robust solution
+        var dateTimeParts = datetimeString.split(', ');
+        var datePart = dateTimeParts[0];
+        var timePart = dateTimeParts[1].replace(' ago', '');
+        
+        var formattedDatetime = moment(`${datePart} ${timePart}`, "MMM DD, YYYY, hh:mm a").format("YYYY-MM-DDTHH:mm:ssZ");
+        
+        return formattedDatetime;
+    }
+</script>
+
+{% endblock %}

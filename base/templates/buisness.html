@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ezcut Buisness</title>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+</head>
+<style>
+  .head_buisness{
+   
+    padding-top:5px ;
+    /* padding-bottom:5px ; */
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  .head_2{
+   
+    padding-top:5px ;
+    /* padding-bottom:5px ; */
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  #listbuisness{
+    border-radius: 20px;
+    background-image: url("https://source.unsplash.com/random/961x640");
+    padding-left: 100px;
+    padding-right: 50px;
+  }
+  #main_hero{
+    margin-left: 70px;
+    margin-right: 70px;
+  }
+  
+</style>
+<body>
+  <div class="head_buisness">
+    <nav class="navbar " style="margin-left: 30px; margin-right: 50px;">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'backtobase' %}" >for customers<i class="bi bi-box-arrow-up-right" style="margin-left: 15px;"></i></a>
+        <span>
+          <!-- <i class="bi bi-person-circle" aria-hidden="true"></i> -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-at" viewBox="0 0 16 16">
+            <path d="M2 2a2 2 0 0 0-2 2v8.01A2 2 0 0 0 2 14h5.5a.5.5 0 0 0 0-1H2a1 1 0 0 1-.966-.741l5.64-3.471L8 9.583l7-4.2V8.5a.5.5 0 0 0 1 0V4a2 2 0 0 0-2-2zm3.708 6.208L1 11.105V5.383zM1 4.217V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v.217l-7 4.2z"/>
+            <path d="M14.247 14.269c1.01 0 1.587-.857 1.587-2.025v-.21C15.834 10.43 14.64 9 12.52 9h-.035C10.42 9 9 10.36 9 12.432v.214C9 14.82 10.438 16 12.358 16h.044c.594 0 1.018-.074 1.237-.175v-.73c-.245.11-.673.18-1.18.18h-.044c-1.334 0-2.571-.788-2.571-2.655v-.157c0-1.657 1.058-2.724 2.64-2.724h.04c1.535 0 2.484 1.05 2.484 2.326v.118c0 .975-.324 1.39-.639 1.39-.232 0-.41-.148-.41-.42v-2.19h-.906v.569h-.03c-.084-.298-.368-.63-.954-.63-.778 0-1.259.555-1.259 1.4v.528c0 .892.49 1.434 1.26 1.434.471 0 .896-.227 1.014-.643h.043c.118.42.617.648 1.12.648m-2.453-1.588v-.227c0-.546.227-.791.573-.791.297 0 .572.192.572.708v.367c0 .573-.253.744-.564.744-.354 0-.581-.215-.581-.8Z"/>
+          </svg>
+          ezcut2024@gmail.com
+        </span>
+        <!-- <button class="btn btn-primary" type="submit">list your business</button> -->
+      </div>
+    </nav>
+  </div>
+  <hr>
+  <div class="head_2">
+    <nav class="navbar navbar-expand-lg ">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">𝓔𝓩𝓒𝓤𝓣</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link " href="#">Features</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Solutions</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Categories</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Pricing</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">FAQ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About us</a>
+            </li>
+          
+            
+          </ul>
+          <form class="d-flex" role="search">
+            <button class="btn btn-outline-success" type="submit">LOGIN</button>
+            <button class="btn btn-outline-success" type="submit">Start Free Trial</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <hr>
+  <diV id="main_hero">
+  <div id="listbuisness">
+    <div class="row" style="margin-top: 30px; ">
+      <div class="col-sm-5 col-md-6">
+       <h1>Online scheduling software</h1>
+        <p style="margin-top: 60px;">
+            <br>
+           " Looking for your next appointment with a local barber, hair stylist, massage therapist or nail artist? Need appointment booking for a beard trim, an eyebrow wax, or a deep tissue massage?"
+            <br>
+            <b>"Discover top businesses in your area and book instantly with Booksy.</b>
+            Booksy is a free beauty scheduling app and makes appointments easy to find and book within seconds. No more phone tag. Book anytime, from anywhere, 24/7."
+            <br><br>
+        </p>
+        <button class="btn btn-info" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Sing Up Me</button>
+      </div>
+      <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0">
+        <div >
+        <img src="https://cdni.iconscout.com/illustration/premium/thumb/appointment-booking-5599704-4671133.png?f=webp" alt="random image" style="width: 500px; height: auto;">
+    </div>
+    </div>
+    </div>
+  </div>
+  </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+  <div class="modal-dialog" >
+    <div class="modal-content" style="min-height: 600px;">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel" style="margin-left: 40%;">𝓔𝓩𝓒𝓤𝓣</h1>
+        <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+      </div>
+      <div class="modal-body">
+        <form method="post" action="/Createbuisness" enctype="multipart/form-data" id="formElement">
+          {% csrf_token %}
+          <div class="form1" id="form1">
+              <div class="d-flex justify-content-center">
+                  <h1 style="margin: 10% 20% 10% 20%;"><b>What is your email address?</b></h1>
+              </div>
+              <div class="mb-4">
+                  <label for="username" class="form-label">Email Id</label>
+                  <input name="username" type="email" class="form-control" id="username" placeholder="E-mail address" required />
+                  <div class="invalid-feedback">
+                      <div>Email address is required</div>
+                  </div>
+              </div>
+              <span id="form1check" style="display: none; color: red;">Fill in the required details first</span>
+              <div class="d-grid" style="margin-top: 15%;">
+                  <button type="button" class="btn text-light bg-dark" onclick="showform2();">Continue</button>
+              </div>
+              <div class="alert alert-danger mt-3 mb-0" style="display: none;"></div>
+              <div class="modal-footer">
+                  <p class="[ txt--center ] terms-button_contentText_lFrPn terms-button_size--14_g2nll">By signing up I agree to the <a data-testid="terms-button" class="[ txt--center pointer ] terms-button_contentLink_ib0CF"> Terms &amp; Conditions </a> and to the <a data-testid="privacy-button" class="[ txt--center pointer ] terms-button_contentLink_ib0CF"> Privacy Policy </a></p>
+              </div>
+          </div>
+      
+          <div class="form2" id="form2" style="display: none;">
+              <div style="margin: 10% 20% 10% 20%;">
+                  <h1><b>About You</b></h1>
+                  <span>Tell us More About Yourself And Your Business</span>
+              </div>
+              <div class="mb-4">
+                  <input name="business_name" type="text" class="form-control" id="business_name" placeholder="Business Name" required />
+                  <div class="invalid-feedback">
+                      <div>Business Name is required</div>
+                  </div>
+              </div>
+              <div class="mb-4">
+                  <input name="first_name" type="text" class="form-control" id="first_name" placeholder="Your Name" required />
+                  <div class="invalid-feedback">
+                      <div>Name is required</div>
+                  </div>
+              </div>
+              <div class="mb-4">
+                  <input name="last_name" type="text" class="form-control" id="last_name" placeholder="Your SirName" required />
+                  <div class="invalid-feedback">
+                      <div>Name is required</div>
+                  </div>
+              </div>
+              <div class="mb-4">
+                <input name="user_name" type="text" class="form-control" id="user_name" placeholder="Create UserName" required />
+                <div class="invalid-feedback">
+                    <div>Name is required</div>
+                </div>
+            </div>
+              <div class="mb-4">
+                  <input type="tel" id="phone" name="phone" class="form-control" placeholder="123-45-678" required />
+                  <div class="invalid-feedback">
+                      <div>Phone No. is required</div>
+                  </div>
+              </div>
+              <span id="form2check" style="display: none; color: red;">Fill in the required details first</span>
+              <div class="d-grid" style="margin-top: 15%;">
+                  <button type="button" class="btn text-light bg-dark" onclick="showform3()">Continue</button>
+              </div>
+              <div class="alert alert-danger mt-3 mb-0" style="display: none;"></div>
+          </div>
+      
+          <div class="from3" id="form3" style="display: none;">
+            <div style="margin:5% 10% 5% 10%;">
+              <h1 ><b>Upload Your Buisness Details</b></h1>
+              <span>Uplaod Profiles and tell us services provide Your Buisness</span>
+            </div>
+            
+            <div class="mb-4">
+                <input name="buisness_profile" type="file" class="form-control" id="buisness_profile" 
+                    class="form-control" style="margin-bottom: 35px;"  required />
+                <div class="invalid-feedback">
+                    <div>Profile is required</div>
+                </div>
+                </div>
+                <span style="margin-bottom: 5px;">Services</span><br>
+                <ul>
+                  <div id="adding_service">
+                <div class="mb-4">  
+                <input type="checkbox" onclick="document.getElementById('haircut_price').style.display='block';" id="service1" name="service1" value="hair cutting">
+                <label for="service1"> hair cutting</label>
+                <input  type="text"  id="haircut_price" name="haircut_price" placeholder="Haircut Price"
+                style="display: none;"  required/><br>
+              </div>
+              <div class="mb-4">
+                <input type="checkbox" onclick="document.getElementById('massage_price').style.display='block';" id="service2" name="service2" value="massage">
+                <label for="service2"> massage</label>
+                <input  type="text"  id="massage_price" name="massage_price" placeholder="massage Price"
+                style="display: none;" required/>
+              </div>
+                <br>
+                <div class="mb-4">
+                <input type="checkbox" onclick="document.getElementById('beard_price').style.display='block';" id="service3" name="service3" value="beard trim">
+                <label for="service3">beard trim</label>
+                <input  type="text"  id="beard_price" name="beard_price" placeholder="beard trim Price"
+                style="display: none;" required/>
+                </div><br>
+                <div class="mb-4">
+                <input type="checkbox" onclick="document.getElementById('haircolor_price').style.display='block';" id="service4" name="service4" value="hair color">
+                <label for="service4"> Hair Color</label>
+                <input  type="text"  id="haircolor_price" name="haircolor_price" placeholder="Hair Color Price"
+                style="display: none;" required/><br>
+                
+              </div>
+              </div>
+              <button class="btn btn-dark" onclick="addservices()">+ more</button>
+               </ul>
+               <span id="form3check" style="display: none;color: red;">Fill The Required Details First</span>
+            <div class="d-grid" style=" margin-top: 15%;">
+                <button type="submit" class="btn text-light bg-dark" onclick="showform4()">Continue</button>
+            </div>
+            <div class="alert alert-danger mt-3 mb-0" style="display: none;"></div>
+       
+      </div>
+      
+          <div class="form4" id="form4" style="display: none;">
+              <div style="margin: 5% 10% 5% 10%;">
+                  <h1><b>Upload Your Business Details</b></h1>
+                  <span>Upload Address and add more images for Your Business</span>
+              </div>
+              <div id="adding_Images">
+                  <div class="mb-4">
+                    <input name="address" type="text" class="form-control" id="address"
+                        class="form-control" placeholder="Enter a Address" required />
+                      <div class="invalid-feedback">
+                          <div>Address is required</div>
+                      </div>
+                  </div>
+                  <div class="mb-4">
+                    <input name="city" type="text" class="form-control" id="city" placeholder="Enter City" required />
+                    <div class="invalid-feedback">
+                        <div>city is required</div>
+                    </div>
+                </div>
+                <div class="mb-4">
+                  <input name="password" type="password" class="form-control" id="password" placeholder="Create a password" required />
+                  <div class="invalid-feedback">
+                      <div>Password is required</div>
+                  </div>
+              </div>
+              <div class="mb-4">
+                  <input name="confirmPassword" type="password" class="form-control" id="confirmPassword" placeholder="Confirm password" required />
+                  <div class="invalid-feedback">
+                      <div>Password confirmation is required</div>
+                  </div>
+              </div>
+              <div id="passwordMatchMessage"></div>
+                  <div class="mb-4">
+                      <input name="buisness_images" type="file" class="form-control" id="buisness_images" required />
+                      <div class="invalid-feedback">
+                          <div>Profile is required</div>
+                      </div>
+                  </div>
+              </div>
+              <a class="btn btn-dark" onclick="addImgaes()">+ Add More Images</a>
+              <span id="form4check" style="display: none; color: red;">Fill in the required details first</span>
+              <div class="d-grid" style="margin-top: 15%;">
+                  <button type="submit" class="btn text-light bg-dark" id="submit_btn">Submit</button>
+              </div>
+              <div class="alert alert-danger mt-3 mb-0" style="display: none;"></div>
+          </div>
+      </form>
+      
+     
+    </div>
+    
+    </div>
+    </div>
+  </div>
+</div>
+<script>
+  var i=0;
+  function showform2(){
+  var  check_input_form= document.getElementById("username").value;
+  if(check_input_form==''){
+  document.getElementById("form1check").style.display='block';
+  }
+  else{
+document.getElementById('form1').style.display='none';
+document.getElementById('form2').style.display='block';
+  }
+  }
+  function showform3(){
+    var  check_input_user= document.getElementById("user_name").value;
+    // var  check_input_user= document.getElementById("user_name").value;
+    var  check_input_phone= document.getElementById("phone").value;
+    var  check_input_bn= document.getElementById("business_name").value;
+  if(check_input_user !='' && check_input_phone !='' && check_input_bn !=''){
+    document.getElementById('form1').style.display='none';
+    document.getElementById('form2').style.display='none';
+    document.getElementById('form3').style.display='block';
+  }
+  else{
+    document.getElementById("form2check").style.display='block';
+  }
+  }
+  function showform4(){
+    var  check_input_user= document.getElementById("buisness_profile").value;
+    if(check_input_user==''){
+  document.getElementById("form3check").style.display='block';
+  }
+  else{
+document.getElementById('form1').style.display='none';
+document.getElementById('form2').style.display='none';
+document.getElementById('form3').style.display='none';
+document.getElementById('form4').style.display='block';
+  }
+  }
+  function addservices(){
+   var addservice= document.getElementById("adding_service");
+   let add_div = document.createElement("div");
+   add_div.className='mb-4'
+   let input_checkbox = document.createElement("input");
+   let input_service = document.createElement("input");
+   let input_service_price = document.createElement("input");
+   let br = document.createElement("br");
+   let br1 = document.createElement("br");
+   let br2 = document.createElement("br");
+   input_checkbox.type='checkbox';
+   input_service.type='text';
+   input_service.placeholder="Enter Your Service";
+   input_service.required=true;
+   input_service_price.type='text';
+   input_service_price.placeholder="Enter Your price";
+   input_service_price.required=true;
+   add_div.append(input_checkbox,input_service,br1,input_service_price,br2,br);
+   addservice.append(add_div);
+   input_checkbox.click();
+  }
+  function addImgaes(){
+    var addImgae= document.getElementById("adding_Images");
+    let add_div = document.createElement("div");
+   add_div.className='mb-4'
+    let input_file= document.createElement('input');
+    let br= document.createElement('br');
+    input_file.type='file';
+    input_file.id="buisness_images"+i; 
+    input_file.name="buisness_images"+i; 
+    input_file.className="form-control"; 
+    input_file.style.marginBottom='25px'; 
+    i++;
+    add_div.append(input_file);
+    addImgae.append(add_div);
+  }
+  document.getElementById("submit_btn").addEventListener('click', function () {
+    var email=document.getElementById("username").value;
+    var buisness_name=document.getElementById("buisness_name").value;
+    var user_name=document.getElementById("user_name").value;
+    var phone=document.getElementById("phone").value;
+    var profile=document.getElementById("buisness_profile").value;
+  });
+</script>
+<script>
+  // Get references to the password and confirm password fields
+  const passwordField = document.getElementById('password');
+  const confirmPasswordField = document.getElementById('confirmPassword');
+  const passwordMatchMessage = document.getElementById('passwordMatchMessage');
+
+  // Add an event listener to check password match on input change
+  confirmPasswordField.addEventListener('input', function () {
+      // Get the values from both fields
+      const password = passwordField.value;
+      const confirmPassword = confirmPasswordField.value;
+
+      // Check if passwords match
+      if (password === confirmPassword) {
+          // If passwords match, display a success message
+          passwordMatchMessage.textContent = 'Passwords match!';
+          passwordMatchMessage.style.color = 'green';
+      } else {
+          // If passwords don't match, display an error message
+          passwordMatchMessage.textContent = 'Passwords do not match!';
+          passwordMatchMessage.style.color = 'red';
+      }
+  });
+</script>
+</body>
+</html>

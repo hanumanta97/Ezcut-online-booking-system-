@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Your Salon Name</title>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/mobiscroll.javascript.min.css">
+    <script src="../static/js/mobiscroll.javascript.min.js"></script>
+
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+        /* Light gray background */
+    }
+
+    header {
+        background-color: #333;
+        color: #fff;
+        padding: 20px 0;
+        /* Increased padding for better visual appeal */
+        text-align: center;
+    }
+
+    header nav ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    header nav ul li {
+        display: inline;
+        margin: 0 10px;
+    }
+
+    main {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        padding-left: 6%;
+        padding-right: 6%;
+        padding-top: 2%;
+    }
+
+    .left-column,
+    .right-column {
+        margin-bottom: 20px;
+        /* Added margin to separate sections */
+        border-radius: 5px;
+        /* Rounded corners for a modern look */
+        overflow-y: auto;
+        /* Enable vertical scrolling */
+    }
+
+    .left-column {
+        flex-basis: 100%;
+        /* Full width on small screens */
+        height: 80vh;
+        /* Set a fixed height */
+    }
+
+    .right-column {
+        flex-basis: 100%;
+        /* Full width on small screens */
+        height: 80vh;
+        /* Set a fixed height */
+    }
+
+    .image-slider img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin-bottom: 20px;
+        /* Increased margin for better separation */
+        border-radius: 5px;
+        /* Rounded corners for images */
+    }
+
+    .services-list {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 20px;
+        /* Increased margin for better separation */
+    }
+
+    .services-list li {
+        margin-bottom: 10px;
+    }
+
+    .location-map iframe {
+        width: 100%;
+        height: 300px;
+        border: 0;
+        /* Remove border */
+        border-radius: 5px;
+        /* Rounded corners for map */
+    }
+
+    .schedule {
+        margin-top: 20px;
+    }
+
+    .left-column,
+    .right-column {
+        scrollbar-width: none;
+        /* Firefox */
+        -ms-overflow-style: none;
+        /* Internet Explorer 10+ */
+    }
+
+    .left-column::-webkit-scrollbar,
+    .right-column::-webkit-scrollbar {
+        display: none;
+        /* Hide scrollbar for Chrome, Safari, and Opera */
+    }
+
+    footer {
+        background-color: #333;
+        color: #fff;
+        padding: 20px 0;
+        /* Increased padding for better visual appeal */
+        text-align: center;
+    }
+
+    @media (min-width: 768px) {
+        .left-column {
+            flex-basis: 60%;
+            /* 70% width on medium and larger screens */
+        }
+
+        .right-column {
+            flex-basis: 38%;
+            /* 28% width on medium and larger screens */
+        }
+    }
+
+    .item-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .card-img-top {
+        border-radius: 50%;
+        width: 60px; /* Set a fixed width */
+        height: 60px; /* Set a fixed height */
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        /* margin-top: -75px;  */
+    }
+    .button-group {
+    margin-top: 20px;
+}
+
+.card button {
+    margin: 10px;
+    padding: 10px 40px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+
+#acceptBtn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#rejectBtn {
+    background-color: #f44336;
+    color: white;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+#acceptBtn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#rejectBtn {
+    background-color: #f44336;
+    color: white;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+.review-box {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        background-color: rgba(0, 0, 0, 0.5);
+        /* Black with 50% transparency */
+        color: #ffffff;
+        /* White text */
+        padding: 25px 25px;
+        border: 1px solid #ffffff;
+        /* White border */
+        border-radius: 5px;
+        font-size: 12px;
+        z-index: 1;
+        /* Ensure the review box is above the images */
+    }
+
+ 
+</style>
+
+<body>
+    <header>
+        <h1>Welcome to EZCUT</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="left-column">
+            <div class="image-slider">
+                <div id="carouselExample" class="carousel slide">
+                    <div class="carousel-inner">
+                        <!-- <div class="carousel-item active">
+                            <img src="https://source.unsplash.com/random/961x640" class="d-block w-100" alt="...">
+                        </div> -->
+                        {% for image in image_files %}
+                        <div class="carousel-item  {% if forloop.first %}active{% endif %}">
+                            <img src="data:image/jpeg;base64,{{ image }}" class="d-block w-100"
+                                style="width: 455px;height: 490px;">
+
+                            <div class="review-box">
+                                <h4>{{ rating.1 }} </h4><!-- Average Rating -->
+                                <span>{{ rating.0 }} review</span><!-- Rating Count -->
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    </ul>
+                    <span style="display: none;" id="shop_id">{{shop_data.0}}</span>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+            <div>
+                {% for data in shop_data %}
+                <h3>{{  data.2 }}</h3>
+                <span>{{data.8}}</span><br>
+                <span>{{ data.5 }}</span>
+                {% endfor %}
+            </div>
+            <div class="d-flex justify-content-center" style="font-size: large; margin-top: 10px;margin-bottom: 10px;"><h2>Appointments</h2></div>
+            
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                {% for detail in appointment_details %}
+                <div class="col">
+                    <div class="card" style="position: relative;">
+                        <img src="data:image/jpeg;base64,{{ detail.encoded_image }}" class="card-img-top" alt="{{ detail.user_info.1 }}'s profile image" style="margin-top: 10px; text-align: center;">
+                        <div class="card-body">
+                            <h5 class="card-title" style="text-align: center;">{{ detail.user_info.1 }} {{ detail.user_info.2 }}</h5>
+                            <p class="card-text" style="text-align: center;">
+                                <span>Contact : {{  detail.user_info.3 }}</span><br>
+                                <span>Services : {{ detail.appointment.1 }}</span><br>
+                                <span>Time : {{ detail.appointment.2 }}</span><br>
+                                <span>Date : {{ detail.appointment.3 }}</span><br>
+                            </p>
+                            <div class="button-group" id="button-group{{ detail.appointment.4}}" style="text-align: center;">
+                                <button type="button" style="background-color: #4CAF50; color: #ffffff " onclick="acceptfun('{{ detail.appointment.4}}')">Accept</button>
+
+                                <button type="button" style="background-color: #e40e0e; color: #ffffff " onclick="document.getElementById('reasontoreject{{ detail.appointment.4}}').style.display='block'">Reject</button>
+                            </div>
+                            <div id="reasontoreject{{ detail.appointment.4}}"style="display: none;">
+                            <textarea name="reasontoreject" id="textreason{{ detail.appointment.4}}" style="width: 100%;" placeholder="Reason...."></textarea>
+                            <button class="btn btn-primary" onclick="rejectfun('{{ detail.appointment.4}}')" >submit </button>
+                        </div>
+                        <div id="accept_text{{ detail.appointment.4}}" style="display: none; border: 2px solid rgb(64, 155, 22); height: 30px; width: 100%;text-align: center; background-color: #4CAF50; color: #ffffff ;border-radius: 5px;">Appointment Booked</div>
+                        </div>
+                        <div id="reject_text{{ detail.appointment.4}}" style="display: none; border: 2px solid rgb(222, 76, 9); height: 30px; width: 100%;text-align: center; background-color: #e40e0e; color: #ffffff ;border-radius: 5px;">Rejected</div>
+                        </div>
+                    </div>
+               
+                {% endfor %}
+              </div>
+        </section>
+
+        <section class="right-column">
+            <div class="d-flex justify-content-center" style="font-size: large; margin-top: 10px;margin-bottom: 10px;"><h2>Schedule</h2></div>
+            
+            <!-- <h2>Location & Schedule</h2> -->
+            {% for detail in schedule_details %}
+            <div class="col">
+                <div class="card" id="card_{{ detail.appointment.4 }}" style="position: relative; margin-bottom: 10px;">
+                    <img src="data:image/jpeg;base64,{{ detail.encoded_image }}" class="card-img-top" alt="{{ detail.user_info.1 }}'s profile image" style="margin-top: 10px; text-align: center;">
+                    <div class="card-body">
+                        <h5 class="card-title" style="text-align: center;">{{ detail.user_info.1 }} {{ detail.user_info.2 }}</h5>
+                        <p class="card-text" style="text-align: center;">
+                            <span>Contact : {{  detail.user_info.3 }}</span><br>
+                            <span>Services : {{ detail.appointment.1 }}</span><br>
+                            <span>Time : {{ detail.appointment.2 }}</span><br>
+                            <span>Date : {{ detail.appointment.3 }}</span><br>
+                            <span class="countdown" data-time="{{ detail.appointment.2 }}" data-date="{{ detail.appointment.3 }}" style="color: #4CAF50;"></span>
+                        </p>
+                        <div class="button-group" id="button-group{{ detail.appointment.4 }}" style="text-align: center;">
+                            <button type="button" style="background-color: #4CAF50; color: #ffffff " onclick="Donefun('{{ detail.appointment.4 }}')" >Done</button>
+
+                            <button type="button" style="background-color: #e40e0e; color: #ffffff " onclick="document.getElementById('reasontocancel{{ detail.appointment.4 }}').style.display='block'">Cancel</button>
+                        </div>
+                        <div id="reasontocancel{{ detail.appointment.4 }}"style="display: none;">
+                            <textarea name="reasontocancel" id="textcancel{{ detail.appointment.4 }}" style="width: 100%;" placeholder="Why...."></textarea>
+                            <button class="btn btn-primary" onclick="Cancelfun('{{ detail.appointment.4 }}')" >submit </button>
+                    </div>
+                        
+                </div>
+            </div>
+            {% endfor %}
+            <hr>
+            <div class="schedule">
+                <h3>Shop Hours</h3>
+                <hr>
+                <p>Monday : </p>
+                <p> 8:00 AM - 7:00 PM</p>
+                <hr>
+                <p>Tuesday : </p>
+                <p> 9:00 AM - 7:00 PM</p>
+                <hr>
+                <p>Wednesday : </p>
+                <p> 9:00 AM - 7:00 PM</p>
+                <hr>
+                <p>Thursday : </p>
+                <p> 9:00 AM - 7:00 PM</p>
+                <hr>
+                <p>Friday : </p>
+                <p> 9:00 AM - 7:00 PM</p>
+                <hr>
+                <p>Saturday: </p>
+                <p> 10:00 AM - 6:00 PM</p>
+                <hr>
+                <p>Sunday: </p>
+                <p> Closed</p>
+                <hr>
+            </div>
+        </section>
+    </main>
+   
+    <footer>
+        <p>&copy; 2024 𝓔𝓩𝓒𝓤𝓣. All rights reserved.</p>
+    </footer>
+</body>
+<script>
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    const csrftoken = getCookie('csrftoken');
+</script>
+<script>
+    accptbtn=document.getElementById('acceptBtn');
+    function acceptfun(a) {
+       var  btngrp="button-group"+a;
+       var  reject_text="reasontoreject"+a;
+       var  accept_text="accept_text"+a;
+        $.ajax({
+                "type": "POST",
+                "url": `/conformation`,
+                "dataType": "JSON",
+                "data":{"apoointment":'ACCEPT','user_id':a},
+                "headers": { 'X-CSRFToken': csrftoken },
+                "mode": 'same-origin'
+            }).then(function (response) {
+                document.getElementById(btngrp).style.display='none';
+                document.getElementById(reject_text).style.display='none';
+                document.getElementById(accept_text).style.display='block';
+            });
+    }
+   function rejectfun(a){
+    reson_text="textreason"+a;
+    resontoreject=document.getElementById(reson_text).value;
+    var  btngrp="button-group"+a;
+       var  reject_text="reasontoreject"+a;
+       var  reject_text_="reject_text"+a;
+    if(resontoreject==''){
+        alert('fill the reson behind rejection')
+    }
+    else{
+    $.ajax({
+                "type": "POST",
+                "url": `/conformation`,
+                "dataType": "JSON",
+                "data":{"apoointment":'REJECT',"text":resontoreject,'user_id':a},
+                "headers": { 'X-CSRFToken': csrftoken },
+                "mode": 'same-origin'
+            }).then(function (response) {
+                console.log(response.data)
+                document.getElementById(btngrp).style.display='none';
+                document.getElementById(reject_text).style.display='none';
+                document.getElementById(reject_text_).style.display='block';
+            });
+   }}
+   function Donefun(i){
+   var card="card_"+i;
+   var textmessage="textcancel"+i;
+   cancel_reason=document.getElementById(textmessage).value;
+   $.ajax({
+                "type": "POST",
+                "url": `/settel_appointment`,
+                "dataType": "JSON",
+                "data":{"apoointment":'DONE',"text":cancel_reason,'user_id':i},
+                "headers": { 'X-CSRFToken': csrftoken },
+                "mode": 'same-origin'
+            }).then(function (response) {
+                console.log(response.data)
+                document.getElementById(card).style.display='none';
+              
+            });
+   }
+   function Cancelfun(i){
+    var card="card_"+i;
+   var textmessage="textcancel"+i;
+   cancel_reason=document.getElementById(textmessage).value;
+   console.log(cancel_reason)
+   if(cancel_reason==''){
+    alert ("please give a appropraite reson behind cancellation")
+   }
+   else{
+   $.ajax({
+                "type": "POST",
+                "url": `/settel_appointment`,
+                "dataType": "JSON",
+                "data":{"apoointment":'CANCEL',"text":cancel_reason,'user_id':i},
+                "headers": { 'X-CSRFToken': csrftoken },
+                "mode": 'same-origin'
+            }).then(function (response) {
+                console.log(response.data)
+                document.getElementById(card).style.display='none';
+              
+            });
+   }}
+</script>
+<script>
+    // Function to convert time format "5:05 a.m." to "HH:MM:SS" in 24-hour format
+    function convertTo24HourFormat(time) {
+        var [time, modifier] = time.split(' ');
+        let [hours, minutes] = time.split(':');
+        hours = parseInt(hours, 10);
+        minutes = parseInt(minutes, 10);
+
+        if (modifier === 'p.m.' && hours < 12) {
+            hours += 12;
+        } else if (modifier === 'a.m.' && hours === 12) {
+            hours = 0;
+        }
+
+        return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:00`;
+    }
+
+    // Function to start a countdown
+    function startCountdown(element, endTime) {
+        var x = setInterval(function() {
+            var now = new Date().getTime();
+            var distance = endTime - now;
+
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            element.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+            if (distance < 0) {
+                clearInterval(x);
+                element.innerHTML = "EXPIRED";
+            }
+        }, 1000);
+    }
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+        var countdownElements = document.querySelectorAll('.countdown');
+        countdownElements.forEach(function(element) {
+            var time = element.getAttribute('data-time');
+            var date = element.getAttribute('data-date');
+
+            // Convert time and date to a valid Date object
+            var time24 = convertTo24HourFormat(time);
+            var countDownDate = new Date(`${date} ${time24}`).getTime();
+
+            startCountdown(element, countDownDate);
+        });
+    });
+</script>
+</html>

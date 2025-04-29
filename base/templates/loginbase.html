@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EZCUT</title>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+  integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="
+  crossorigin="anonymous"
+/>
+</head>
+
+<style>
+  .hero_section {
+    position: absolute;
+    width: 100%;
+    height: 70vh;
+    z-index: 11;
+    top:0vh;
+    overflow: hidden;
+  }
+  .ezcutbody{
+    margin-top: 60vh;
+    padding:40px;
+  }
+
+  .hero_video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero_text {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+  }
+
+  .changing_text {
+    margin-bottom: 20px;
+  }
+
+  .search_input {
+    width: 50%;
+    margin: 0 auto;
+  }
+
+  .footer {
+    /* background-color: #343a40; */
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+
+  .nav-link {
+    color: #fff;
+  }
+
+ 
+
+  .swiper-slide {
+    width: 250px;
+    height: 280px;
+    margin-right: 20px;
+    margin-left: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* background-color: #f8f9fa; */
+  }
+
+  /* .card img {
+    max-width: 100%;
+    height: 100%;
+  }
+  .card p{
+    font-size: 20px;
+  }
+  .card span{
+    font-size: 10px;
+  } */
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    color: white;
+    font-size: 18px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 100%;
+    transform: translateY(-50%);
+  }
+
+  .swiper-button-prev {
+    left: 10px;
+  }
+
+  .swiper-button-next {
+    right: 10px;
+  }
+  .footer_down {
+    background-color: #343a40;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+}
+h4 {
+  font-size: 9vmin;
+  /* color: #8bf; */
+  /* text-align: left; */
+  font-family: Lato, sans-serif;
+  font-weight: 700;
+  margin: 1rem 0 1rem 2rem;
+}
+
+/* Typewriter effect 1 */
+@keyframes typing {
+  0.0000%, 27.3488% { content: ""; }
+  1.1395%, 26.2093% { content: "C"; }
+  2.2791%, 25.0698% { content: "Co"; }
+  3.4186%, 23.9302% { content: "Col"; }
+  4.5581%, 22.7907% { content: "Colo"; }
+  5.6977%, 21.6512% { content: "Color"; }
+  6.8372%, 20.5116% { content: "Colorf"; }
+  7.9767%, 19.3721% { content: "Colorfu"; }
+  9.1163%, 18.2326% { content: "Colorful"; }
+
+  30.7674%, 51.2791% { content: ""; }
+  31.9070%, 50.1395% { content: "S"; }
+  33.0465%, 49.0000% { content: "St"; }
+  34.1860%, 47.8605% { content: "Sty"; }
+  35.3256%, 46.7209% { content: "Styl"; }
+  36.4651%, 45.5814% { content: "Styli"; }
+  37.6047%, 44.4419% { content: "Stylis"; }
+  37.6047%, 44.4419% { content: "Stylish"; }
+
+  54.6977%, 75.2093% { content: ""; }
+  55.8372%, 74.0698% { content: "B"; }
+  56.9767%, 72.9302% { content: "Br"; }
+  58.1163%, 71.7907% { content: "Bra"; }
+  59.2558%, 70.6512% { content: "Brav"; }
+  60.3953%, 69.5116% { content: "Brave"; }
+
+  78.6279%, 96.8605% { content: ""; }
+  79.7674%, 95.7209% { content: "C"; }
+  80.9070%, 94.5814% { content: "Co"; }
+  82.0465%, 93.4419% { content: "Con"; }
+  83.1860%, 92.3023% { content: "Conf"; }
+  84.3256%, 91.1628% { content: "Confi"; }
+  84.3256%, 91.1628% { content: "Confid"; }
+  84.3256%, 91.1628% { content: "Confide"; }
+  84.3256%, 91.1628% { content: "Confiden"; }
+  84.3256%, 91.1628% { content: "Confident"; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.typewriter {
+  --caret: currentcolor;
+}
+
+.typewriter::before {
+  content: "";
+  animation: typing 13.5s infinite;
+}
+
+.typewriter::after {
+  content: "";
+  border-right: 1px solid var(--caret);
+  animation: blink 0.5s linear infinite;
+}
+
+.typewriter.thick::after {
+  border-right: 1ch solid var(--caret);
+}
+
+.typewriter.nocaret::after {
+  border-right: 0;
+}
+
+
+@media (prefers-reduced-motion) {
+  .typewriter::after {
+    animation: none;
+  }
+  
+  @keyframes sequencePopup {
+    0%, 100% { content: "Colorful"; }
+    25% { content: "Stylish"; }
+    50% { content: "Brave"; }
+    75% { content: "Confident"; }
+  }
+
+  .typewriter::before {
+    content: "developer";
+    animation: sequencePopup 12s linear infinite;
+  }
+}
+.dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #f1f1f1;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    #imgt {
+        object-fit: cover;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+    .action {
+  position: fixed;
+  top: 10px;
+  right: 30px;
+}
+
+.action .profile {
+  position: relative;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.action .profile img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.action .menu {
+  position: absolute;
+  top: 120px;
+  right: -10px;
+  padding: 10px 20px;
+  background: #fff;
+  width: 200px;
+  box-sizing: 0 5px 25px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  transition: 0.5s;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.action .menu.active {
+  top: 50px;
+  visibility: visible;
+  opacity: 1;
+}
+
+.action .menu::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  right: 28px;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  transform: rotate(45deg);
+}
+
+.action .menu h3 {
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  padding: 20px 0;
+  font-weight: 500;
+  color: #555;
+  line-height: 1.5em;
+}
+
+.action .menu h3 span {
+  font-size: 14px;
+  color: #cecece;
+  font-weight: 300;
+}
+
+.action .menu ul li {
+  list-style: none;
+  padding: 16px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+}
+
+.action .menu ul li i {
+    color: black;
+  max-width: 20px;
+  margin-right: 15px;
+  opacity: 0.5;
+  transition: 0.5s;
+}
+
+.action .menu ul li:hover i {
+  opacity: 1;
+}
+
+.action .menu ul li a {
+  display: inline-block;
+  text-decoration: none;
+  color: #555;
+  font-weight: 500;
+  transition: 0.5s;
+}
+
+.action .menu ul li:hover a {
+  color: #ff5d94;
+}
+.review-box {
+    position: absolute;
+    right: 0px;
+    background-color: rgba(0, 0, 0, 0.5); /* Black with 50% transparency */
+    color: #ffffff; /* White text */
+    padding: 13px 13px;
+    border: 1px solid #070707; /* White border */
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark" style="position: sticky; top:0vh ; margin-bottom: auto; z-index: 10; ">
+            <div class="container-fluid" style="margin-left: 50px; margin-right: 50px;">
+              <a class="navbar-brand" style="color: azure;">𝓔𝓩𝓒𝓤𝓣</a>
+              
+              <input type="text" style="border-radius: 7px; height: 40px; width: 300px;" placeholder="Search Service For Buisness">
+            <input type="text" style="border-radius: 7px; height: 40px;" placeholder="Where?">
+              <input type="text" style="border-radius: 7px; height: 40px;" placeholder="When?">
+             
+              <a class="btn btn-primary" id="for_buisness" href="{% url 'get_shoptemplates' %}" style='display: none;margin-left: 15px'>Go to your business</a>
+            </div>
+         
+      </nav>
+  <header class="hero_section">
+    <video class="hero_video" autoplay muted loop>
+      <source src="https://videos.pexels.com/video-files/3998516/3998516-uhd_4096_2160_25fps.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="hero_text">
+        <h4 aria-label="Hi! I'm a developer">
+            Be&nbsp;<span class="typewriter"></span>
+          </h4>
+      <div class="changing_text">
+        <!-- Change this text using JavaScript -->
+        Welcome to EZCUT
+      </div>
+      
+      <form class="search_input" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search Service For Buisness" aria-label="Search">
+      </form>
+    </div>
+    <nav class="navbar " style="margin-left: 30px; color: azure; margin-right: 50px;">
+      <div class="container-fluid">
+        <a class="navbar-brand" style="color: azure;">𝓔𝓩𝓒𝓤𝓣</a>
+        
+          
+        
+        <div style='margin-left: 4%; margin-right: 5%;'>
+          <a class="btn btn-primary" id="for_buisness_" href="{% url 'get_shoptemplates' %}" style='display: none;margin-left: 15px'>Go to your business</a>
+            
+          </div>
+          <div class="action">
+            <div class="profile" onclick="menuToggle();">
+              <img src="data:image/jpg;base64,{{ encoded_image }}" alt="User Profile Picture">
+            </div>
+            <div class="menu">
+              <h3 id="user_log">{{username}}<br /><span id="email_id">{{email}}</span></h3>
+              <span id="user_id_current_user"style="display: none;">{{user_id}}</span>
+              <ul>
+                <li>
+                    <i class="bi bi-person-circle"></i><a href="#">My profile</a>
+                </li>
+                <li>
+                    <i class="bi bi-pen"></i><a href="#">Edit profile</a>
+                </li>
+                <li>
+                  <i class="bi bi-bell"></i></i><a href="{%url 'get_mails'%}">Inbox</a>
+                </li>
+                <li>
+                    <i class="bi bi-gear"></i><a href="#">Setting</a>
+                </li>
+                <li><i class="bi bi-info"></i><a href="#">Help</a></li>
+                <li>
+                    <i class="bi bi-box-arrow-right"></i><a href="{% url 'signout' %}">Logout</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+      </div>
+    </nav>
+    <footer class="footer">
+      <div class="container">
+        <ul class="nav justify-content-between">
+          <li class="nav-item">
+            <a class="nav-link active" href="{% url 'images_reder' %}">Hair Salon</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Barber Shop</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Nail Salon</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Skin Care</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Brows & Lashes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Massage</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Makeup</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Wellness & Spa</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">More..</a>
+          </li>
+        </ul>
+      </div>
+    </footer>
+  </header>
+  <div class="ezcutbody" >
+  <span><b>Recommended</b></span>
+  <!-- Slider main container -->
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <!-- Slides -->
+      {% for shop in shop_data %}
+      <div class="swiper-slide">
+        <div class="card">
+          <!-- Add an onclick attribute to trigger a JavaScript function -->
+          <a href="{% url 'get_shop_datails' %}?shop_id={{ shop.id }}"><img src="data:image/jpeg;base64,{{ shop.encoded_image }}" alt="random image" style="width: 247px;height: 164px;" ></a>
+          <div class="review-box">{{  shop.rating.1 }}<br><span style="font-size:x-small;">{{  shop.rating.0 }} review</span></div>
+        </div>
+        <div class="card-body">
+          <h6><i class="bi bi-shop" style="margin-right: 5px;"></i>{{ shop.buisness_name }}</h6>
+          <span id="shop_id" style="display: none;">{{ shop.id }}</span>
+          <p class="card-text"><i class="bi bi-compass" style="margin-right: 5px;"></i> {{ shop.shop_address }}</p>
+          <span>
+            <i class="bi bi-geo-alt" style="margin-right: 5px;"></i>{{ shop.city }}
+          </span>
+        </div>
+      </div>
+      {% endfor %}
+  
+     
+    
+      
+      <!-- Add more slides as needed -->
+    </div>
+    <!-- If we need navigation buttons -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+  </div>
+  
+  <div class="container text-center">
+    <div class="row" style="margin-top: 30px;">
+      <div class="col-sm-5 col-md-6">
+        <h3 >Appointment Done Better</h3>
+        <p style="margin-top: 60px;">
+            <br>
+           " Looking for your next appointment with a local barber, hair stylist, massage therapist or nail artist? Need appointment booking for a beard trim, an eyebrow wax, or a deep tissue massage?"
+            <br>
+            <b>"Discover top businesses in your area and book instantly with Booksy.</b>
+            Booksy is a free beauty scheduling app and makes appointments easy to find and book within seconds. No more phone tag. Book anytime, from anywhere, 24/7."
+            <br><br>
+        </p>
+      </div>
+      <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0">
+        <div >
+        <img src="https://cdni.iconscout.com/illustration/premium/thumb/appointment-booking-5599704-4671133.png?f=webp" alt="random image" style="width: 500px; height: auto;">
+    </div>
+    </div>
+    </div>
+    <div class="row" style="margin-top: 30px;">
+      <div class="col-sm-5 col-md-6">
+        <div >
+            <img src="https://png.pngtree.com/png-vector/20200629/ourmid/pngtree-cartoon-hand-drawn-mobile-appointment-calendar-illustration-png-image_2268835.jpg" alt="random image" style="width: 500px; height: auto;">
+        </div>
+      </div>
+      <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0">
+        <h3 >Appointment Done Better</h3>
+        <p style="margin-top: 60px;">
+            <br>
+           " Looking for your next appointment with a local barber, hair stylist, massage therapist or nail artist? Need appointment booking for a beard trim, an eyebrow wax, or a deep tissue massage?"
+            <br>
+            <b>"Discover top businesses in your area and book instantly with Booksy.</b>
+            Booksy is a free beauty scheduling app and makes appointments easy to find and book within seconds. No more phone tag. Book anytime, from anywhere, 24/7."
+            <br><br>
+        </p>
+    </div>
+    </div>
+    <div class="row" style="margin-top: 30px;">
+        <div class="col-sm-5 col-md-6">
+          <h3 >Appointment Done Better</h3>
+          <p style="margin-top: 60px;">
+              <br>
+             " Looking for your next appointment with a local barber, hair stylist, massage therapist or nail artist? Need appointment booking for a beard trim, an eyebrow wax, or a deep tissue massage?"
+              <br>
+              <b>"Discover top businesses in your area and book instantly with Booksy.</b>
+              Booksy is a free beauty scheduling app and makes appointments easy to find and book within seconds. No more phone tag. Book anytime, from anywhere, 24/7."
+              <br><br>
+          </p>
+        </div>
+        <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0">
+          <div >
+          <img src="https://e7.pngegg.com/pngimages/66/908/png-clipart-loudspeaker-3d-computer-graphics-icon-3d-villain-notification-element-3d-computer-graphics-text-thumbnail.png" alt="random image" style="width: 500px; height: auto;">
+      </div>
+      </div>
+      </div>
+  <span style="font-size: 1.5rem; margin-bottom: 20px;">Recommended For You</span>
+  <div class="row " style="margin-bottom: 20px;">
+    <div class="col">
+      <div class="card">
+        <img src="https://source.unsplash.com/random/961x640" alt="random image" class="card-img-top" >
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <img src="https://source.unsplash.com/random/961x640" alt="random image" class="card-img-top" >
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <img src="https://source.unsplash.com/random/961x640" alt="random image" class="card-img-top" >
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  </div>
+  </div>
+  <footer class="footer_down">
+    <nav class="navbar navbar-expand-lg " style="color: #fff;">
+        <div class="container-fluid">
+          <!-- <a class="navbar-brand" href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button> -->
+          <div class="collapse navbar-collapse " id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="color: #fff;">
+              <li class="nav-item" style="margin-right: 10px;">
+                <a class="nav-link "  href="#">Blogs</a>
+              </li>
+              <li class="nav-item" style="margin-right: 10px;">
+                <a class="nav-link" href="#">About Us</a>
+              </li>
+              <li class="nav-item" style="margin-right: 10px;">
+                <a class="nav-link" href="#">FAQ</a>
+              </li>
+              <li class="nav-item" style="margin-right: 10px;">
+                <a class="nav-link" href="#">Privacy Policy</a>
+              </li>
+              <li class="nav-item" style="margin-right: 10px;">
+                <a class="nav-link" href="#">Contact</a>
+              </li>
+              
+            </ul>
+            <form class="d-flex" role="search">
+                <div class="social-icons justify-content-space-between">
+                    <a href="#"><i class="bi bi-facebook" style="font-size: 1.5rem; margin-right: 10px;"></i></a>
+                    <a href="#"><i class="bi bi-twitter" style="font-size: 1.5rem; margin-right: 10px;"></i></a>
+                    <a href="#"><i class="bi bi-instagram" style="font-size: 1.5rem; margin-right: 10px;"></i></a>
+                    <!-- Add more social icons as needed -->
+                  </div>
+            </form>
+          </div>
+        </div>
+      </nav>
+      <hr>
+      <span class="justify-content-start" style="color:azure; ">𝓔𝓩𝓒𝓤𝓣</span>
+  </footer>
+  <div id="buisness_login" style="display: none;">{{buisness_login}}</div>
+  <!-- Swiper JS -->
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script>
+     function getCookie(name) {
+      let cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].trim();
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+          }
+        }
+      }
+      return cookieValue;
+    }
+    const csrftoken = getCookie('csrftoken');
+     function toggleDropdown() {
+        var dropdownContent = document.getElementById("dropdownContent");
+        if (dropdownContent.style.display === "block") {
+            dropdownContent.style.display = "none";
+        } else {
+            dropdownContent.style.display = "block";
+        }
+    }
+
+    function hideDropdown() {
+        var dropdownContent = document.getElementById("dropdownContent");
+        dropdownContent.style.display = "none";
+    }
+    var swiper = new Swiper('.swiper-container', {
+      loop: true,
+      slidesPerView: 'auto',
+      spaceBetween: 20,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+    function menuToggle() {
+        const toggleMenu = document.querySelector(".menu");
+        toggleMenu.classList.toggle("active");
+      }
+  </script>
+    <script>
+       $(document).ready(function () {
+         check_buisness= document.getElementById("buisness_login").innerHTML;
+        if(check_buisness=='yes'){
+          document.getElementById("for_buisness").style.display='block';
+          document.getElementById("for_buisness_").style.display='block';
+        }
+        else{
+          document.getElementById("for_buisness").style.display='none';
+          document.getElementById("for_buisness_").style.display='none';
+        }
+       });
+      function handleImageClick(shopId) {
+        console.log("Clicked shop ID:", shopId);
+        $.ajax({
+                "type": "POST",
+                "url": `/get_shop_datails`,
+                "dataType": "JSON",
+                "data":{"shop_id":shopId},
+                "headers": { 'X-CSRFToken': csrftoken },
+                "mode": 'same-origin'
+            }).then(function (response) {
+                
+            });
+      }
+    </script>
+    <script>
+      
+      const userIdElement = document.getElementById('user_id_current_user');
+checkNotifications();
+function checkNotifications() {
+    if (!userIdElement) {
+        console.error('User ID element not found.');
+        return;
+    }
+
+    const userId = userIdElement.textContent || userIdElement.innerText;
+    console.log(userId);
+
+    $.ajax({
+        type: 'POST',
+        url: '/check_notifications',
+        dataType: 'json',
+        data: { userID: userId },
+        headers: { 'X-CSRFToken': csrftoken },  // Ensure csrftoken is defined
+        "mode": 'same-origin'
+            }).then(function (response) {
+                Notification_=response.data
+                if(Notification_=="NO data"){
+                  
+                }else{
+                  alert(Notification_)
+                }
+
+            }).catch(function (error) {
+        console.error('Error fetching notifications:', error);
+        // Handle errors gracefully, e.g., show an error message to the user
+    });
+    
+}
+
+// Check notifications every 10 seconds (10000 milliseconds)
+setInterval(checkNotifications, 1000000);
+
+  </script>
+  
+</body>
+
+</html>
+<!-- CREATE TABLE sign_up (
+    id BIGSERIAL PRIMARY KEY,
+    first_name TEXT,
+	last_name TEXT,
+	email TEXT,
+	phone TEXT,
+	city TEXT,
+	address TEXT,
+	password_ TEXT,
+	profile BYTEA
+);
+REATE TABLE sign_up_buisness (
+    id BIGSERIAL PRIMARY KEY,
+    buisness_name TEXT,
+	name TEXT,
+	email TEXT,
+	phone TEXT,
+	buisness_profile BYTEA,
+	city TEXT,
+	shop_address TEXT,
+	more_images BYTEA,
+	password TEXT
+); -->

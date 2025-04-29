@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EZCUT LOGIN</title>
+    <!-- <link rel="icon" type="image/x-icon" href="../../static/Untitledcopy.png"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+</head>
+<style>
+   .card{
+    box-shadow: 0 4px 8px 0 rgba(112 110 110 / 48%), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+   }
+   body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    /* background-image: linear-gradient(45deg,red,rgba(255, 0, 0, 0.393),rgba(255, 255, 255, 0.581)); */
+
+    /* background-size: 100%,100%; */
+  /*  insert into "user" (id, username, password,firstname,lastname,role,sectors,urps,rto)
+        values('10','kdmc1','kdmc1','kalyan','cluster','User','3','11','5')
+        background-image: linear-gradient(#ff0000,#f50d0ea8,#ff0002a6,#ff00027a,#ffffff70);style="margin-bottom: 40px;"
+     */
+ } 
+ #thumb{
+    border-radius: 4px;
+    padding: 5px;
+    width: 150px;
+ }
+</style>
+
+
+<body>
+    <div class="container" >
+        <div class="row justify-content-center">
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                <div class="card" style="margin-top: 4vh;margin-bottom: 0vh; background-color:white;">
+                    <div class="card-title text-center border-bottom">
+                        <!-- <img src="../../static/tmclogo.png" style="padding: 5px;" alt="tmc"> -->
+                        <h5 class=" " style="padding: 1px;color: rgb(53, 50, 50); text-shadow: 1px 1px grey;">EZCUT</h5>                        <h4 class=" lh-sm" style="padding: 1px;color: rgb(53, 50, 50); text-shadow: 1px 1px grey; text-decoration: underline;">LOGIN</h4>
+                        <!-- <img src="../../static/Untitledcopy.png" style="padding: 5px;" alt="tmc" id="thumb">
+                        <h5 class=" " style="padding: 1px;color: rgb(53, 50, 50); text-shadow: 1px 1px grey;">Cluster Information Management System.</h5> -->
+                    </div>
+                    <div class="card-body">
+                      <div id="login_form">
+                        {% for message in messages %}
+            <span class="d-flex justify-content-center " style="margin-bottom: 5px; color: red;">{{ message }}</span>
+            {% endfor %}
+                        <form method="post" action="/checkUser" onsubmit="" id="formElement">{% csrf_token %}
+                            <div class="mb-4">
+                                <label for="username" class="form-label">Username</label>
+                                <input name="username" type="text" class="form-control" id="username"
+                                    class="form-control" placeholder="Email address" required />
+                                <div class="invalid-feedback">
+                                    <div>Username is required</div>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label for="password" class="form-label">Password</label>
+                                <input name="password" type="password" class="form-control" id="password"
+                                    class="form-control" placeholder="password" required />
+                                <div class="invalid-feedback">
+                                    <div>Password is required</div>
+                                </div>
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn text-light bg-dark" id="loginButton">Login</button>
+                            </div>
+                            <div class="d-grid">
+                               <span onclick="signupform()"> Create an Ezcut Account</span>
+                            </div>
+                            <div class="alert alert-danger mt-3 mb-0" style="display: none;"></div>
+                        </form>
+                    </div>
+                      <div id="signup_form" style="display: none;">
+                        <form method="post" action="/CreateUser" onsubmit="" enctype="multipart/form-data" id="formElement">{% csrf_token %}
+                            <div class="mb-4">
+                                <label for="First_Name" class="form-label">First Name</label>
+                                <input name="First_Name" type="text" class="form-control" id="First_Name"
+                                    class="form-control" placeholder="Enter first name" required />
+                                <div class="invalid-feedback">
+                                    <div>Name is required</div>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label for="Last_Name" class="form-label">Last Name</label>
+                                <input name="Last_Name" type="text" class="form-control" id="Last_Name"
+                                    class="form-control" placeholder="Enter Last name"  required />
+                                <div class="invalid-feedback">
+                                    <div>Name is required</div>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label for="username" class="form-label">Username</label>
+                                <input name="username" type="text" class="form-control" id="username"
+                                    class="form-control" placeholder="Enter Username"  required />
+                                <div class="invalid-feedback">
+                                    <div>Name is required</div>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label for="email" class="form-label">E-mail Id</label>
+                                <input name="email" type="email" class="form-control" id="email"
+                                    class="form-control" placeholder="Email Address" required />
+                                <div class="invalid-feedback">
+                                    <div>Email is required</div>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label for="phone" class="form-label">Mobile No.</label>
+                                <input name="phone" type="tel" class="form-control" id="phone"
+                                    class="form-control" placeholder="123-45-678" required />
+                                <div class="invalid-feedback">
+                                    <div>phone is required</div>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label for="city" class="form-label">City</label>
+                                <input name="city" type="tel" class="form-control" id="city"
+                                    class="form-control" placeholder="123-45-678" required />
+                                <div class="invalid-feedback">
+                                    <div>phone is required</div>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label for="address" class="form-label">Address</label>
+                                <input name="address" type="text" class="form-control" id="address"
+                                    class="form-control" placeholder="Enter a Address" required />
+                                <div class="invalid-feedback">
+                                    <div>address is required</div>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <input name="password" type="password" class="form-control" id="password" placeholder="Create a password" required />
+                                <div class="invalid-feedback">
+                                    <div>Password is required</div>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <input name="confirmPassword" type="password" class="form-control" id="confirmPassword" placeholder="Confirm password" required />
+                                <div class="invalid-feedback">
+                                    <div>Password confirmation is required</div>
+                                </div>
+                            </div>
+                            <div id="passwordMatchMessage"></div>
+                            <div class="mb-4">
+                                <label for="profile" class="form-label">Profile</label>
+                                <input name="profile" type="file" class="form-control" id="profile"
+                                    class="form-control" placeholder="Enter a Address" required />
+                                <div class="invalid-feedback">
+                                    <div>address is required</div>
+                                </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn text-light bg-dark" id="loginButton">Login</button>
+                            </div>
+                            <div class="d-grid">
+                               <span onclick="signinform()"> Back To Login</span>
+                            </div>
+                            <div class="alert alert-danger mt-3 mb-0" style="display: none;"></div>
+                        </form>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+<script>
+
+    function signupform(){
+      document.getElementById('login_form').style.display='none';
+      document.getElementById('signup_form').style.display='block';
+    }
+    function signinform(){
+      document.getElementById('login_form').style.display='block';
+      document.getElementById('signup_form').style.display='none';
+    }
+</script>
+<script>
+  // Get references to the password and confirm password fields
+  const passwordField = document.getElementById('password');
+  const confirmPasswordField = document.getElementById('confirmPassword');
+  const passwordMatchMessage = document.getElementById('passwordMatchMessage');
+
+  // Add an event listener to check password match on input change
+  confirmPasswordField.addEventListener('input', function () {
+      // Get the values from both fields
+      const password = passwordField.value;
+      const confirmPassword = confirmPasswordField.value;
+
+      // Check if passwords match
+      if (password === confirmPassword) {
+          // If passwords match, display a success message
+          passwordMatchMessage.textContent = 'Passwords match!';
+          passwordMatchMessage.style.color = 'green';
+      } else {
+          // If passwords don't match, display an error message
+          passwordMatchMessage.textContent = 'Passwords do not match!';
+          passwordMatchMessage.style.color = 'red';
+      }
+  });
+</script>
+</html>
+<!-- CREATE TABLE sign_up (
+    id BIGSERIAL PRIMARY KEY,
+    first_name TEXT,
+	last_name TEXT,
+	email_user TEXT,
+	phone TEXT,
+	city TEXT,
+	address TEXT,
+	password_User TEXT,
+	profile BYTEA
+); -->
+<!-- 
+CREATE TABLE sign_up (
+    id BIGSERIAL PRIMARY KEY,
+    first_name TEXT,
+	last_name TEXT,
+	username TEXT,
+	email TEXT,
+	phone TEXT,
+	city TEXT,
+	address TEXT,
+	password TEXT,
+	profile BYTEA
+);
+ -->
+ <!-- 
+  CREATE TABLE buisness (
+    id BIGSERIAL PRIMARY KEY,
+    eamil_id TEXT,
+	buisness_name TEXT,
+	user_name TEXT,
+	phone TEXT,
+	services TEXT,
+	services_price TEXT,
+	shop_address TEXT,
+	password_user TEXT
+);
+);
+  -->
+  

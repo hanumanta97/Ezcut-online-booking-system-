@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Filtered Profiles</title>
+</head>
+<body>
+    {% for profile in profiles %}
+    <div>
+        <!-- {{ profile.first_name }}
+        {{ profile.last_name }}
+        {{ profile.email }}
+        {{ profile.profile.url }} -->
+    </div>
+        <div>
+            <img src="{{ profile }}" alt="Profile Image">
+            <!-- Display other profile information as needed -->
+        </div>
+    {% endfor %}
+</body>
+</html>
